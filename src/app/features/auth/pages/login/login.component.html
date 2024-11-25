@@ -1,1 +1,82 @@
-<p>login works!</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white shadow-2xl rounded-2xl p-8 max-w-md w-full">
+    <!-- Header -->
+    <div class="flex justify-center mb-8">
+      <h1 class="text-3xl font-extrabold text-blue-700">Log In</h1>
+    </div>
+
+    <!-- Reactive Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="space-y-6">
+      <!-- Username -->
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700"
+          >Username</label
+        >
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+          placeholder="Enter your username"
+        />
+        <!-- Error message -->
+        <div
+          *ngIf="
+            loginForm.get('username')?.touched &&
+            loginForm.get('username')?.invalid
+          "
+        >
+          <p class="text-sm text-red-500 mt-1">Username is required.</p>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700"
+          >Password</label
+        >
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+          placeholder="Enter your password"
+        />
+        <!-- Error message -->
+        <div
+          *ngIf="
+            loginForm.get('password')?.touched &&
+            loginForm.get('password')?.invalid
+          "
+        >
+          <p class="text-sm text-red-500 mt-1">
+            Password must be at least 7 characters long.
+          </p>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="mt-6">
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-bold shadow-md hover:bg-blue-700 transition-transform transform hover:scale-105 disabled:bg-gray-400"
+        >
+          Log In
+        </button>
+      </div>
+    </form>
+
+    <!-- Sign Up Link -->
+    <div class="mt-4 text-center">
+      <p class="text-sm text-gray-600">
+        Don't have an account?
+        <a
+          routerLink="/auth/register"
+          class="text-blue-600 hover:underline font-medium"
+          >Sign up</a
+        >
+      </p>
+    </div>
+  </div>
+</div>
