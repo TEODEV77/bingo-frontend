@@ -7,6 +7,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'game',
+    loadChildren: () =>
+      import('./features/game/game.module').then((m) => m.GameModule),
+  },
 ];
 
 @NgModule({
