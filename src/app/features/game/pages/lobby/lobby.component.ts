@@ -27,7 +27,7 @@ export class LobbyComponent implements OnInit {
   onCountdownEnd() {
     this.lobbyWsService.onLobbyClosed((flag: boolean) => {
       if (flag) {
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/game/noroom']);
       } else {
         this.router.navigate(['/game/room']);
       }
