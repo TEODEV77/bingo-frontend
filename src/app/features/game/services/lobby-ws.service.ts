@@ -19,15 +19,7 @@ export class LobbyWsService {
     this.socket.on('timeUpdate', callback);
   }
 
-  joinLobby() {
-    this.socket.emit('joinLobby');
-  }
-
-  emitLobbyClosed() {
-    this.socket.emit('lobbyClosed');
-  }
-
-  onLobbyClosed(callback: () => void) {
+  onLobbyClosed(callback: (flag: boolean) => void) {
     this.socket.on('lobbyClosed', callback);
   }
 }
