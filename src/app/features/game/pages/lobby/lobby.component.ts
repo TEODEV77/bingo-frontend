@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { io, Socket } from 'socket.io-client';
 import { LobbyWsService } from '../../services/lobby-ws.service';
 
 @Component({
@@ -9,17 +8,25 @@ import { LobbyWsService } from '../../services/lobby-ws.service';
   styleUrl: './lobby.component.css',
 })
 export class LobbyComponent implements OnInit {
-  public countdown: number = 30;
+  public countdown: number = 25;
+  private lobbyStatus: boolean = true;
 
   constructor(private router: Router, private lobbyWsService: LobbyWsService) {}
 
   ngOnInit(): void {
-    this.startCountdown();
-    this.lobbyWsService.connect();
-    this.lobbyWsService.onTimeUpdate((time: number) => {
-      this.countdown = time;
+    if (this.lobbyStatus) {
+      this.startCountdown();
+      this.lobbyWsService.connect();
+      this.lobbyWsService.onTimeUpdate((time: number) => {
+        this.countdown = time;
+      });
+      this.lobbyWsService.joinLobby();
+    } else {
+      this.router.navigate(['/auth/login']);
+    }
+    this.lobbyWsService.onLobbyClosed(() => {
+      this.router.navigate(['/auth/login']);
     });
-    this.lobbyWsService.joinLobby();
   }
 
   startCountdown() {
@@ -34,7 +41,8 @@ export class LobbyComponent implements OnInit {
   }
 
   onCountdownEnd() {
-    this.lobbyWsService.onLobbyClosed();
+    this.lobbyWsService.emitLobbyClosed();
     this.router.navigate(['/game/room']);
+    this.lobbyStatus = false;
   }
 }

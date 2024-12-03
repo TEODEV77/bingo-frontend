@@ -23,7 +23,11 @@ export class LobbyWsService {
     this.socket.emit('joinLobby');
   }
 
-  onLobbyClosed(): void {
-    this.socket.on('lobbyClosed', () => {});
+  emitLobbyClosed() {
+    this.socket.emit('lobbyClosed');
+  }
+
+  onLobbyClosed(callback: () => void) {
+    this.socket.on('lobbyClosed', callback);
   }
 }

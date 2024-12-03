@@ -8,5 +8,5 @@ import { ServerService } from '../../../../services/server.service';
 })
 export class RoomComponent {
 
-  serverSocket = inject(ServerService);
+  // serverSocket = inject(ServerService);
 }
