@@ -9,7 +9,7 @@ import { LobbyWsService } from '../../services/lobby-ws.service';
 })
 export class LobbyComponent implements OnInit {
   public countdown: number = 0;
-  //http://localhost:4200/game/lobby
+  //http://localhost:4200/game/menu
   constructor(private router: Router, private lobbyWsService: LobbyWsService) {}
 
   ngOnInit(): void {
