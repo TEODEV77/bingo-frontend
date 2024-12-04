@@ -8,6 +8,7 @@ import { LobbyComponent } from './pages/lobby/lobby.component';
 import { NoRoomAvailableComponent } from './pages/no-room-available/no-room-available.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { BingoCardComponent } from './components/bingo-card/bingo-card.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MenuComponent } from './pages/menu/menu.component';
     NoRoomAvailableComponent,
     HeaderComponent,
     MenuComponent,
+    BingoCardComponent,
   ],
   imports: [CommonModule, GameRoutingModule],
 })
