@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'players',
   templateUrl: './player-list.component.html',
-  styleUrl: './player-list.component.css'
+  styleUrl: './player-list.component.css',
 })
 export class PlayerListComponent {
-
-  playerNames: string[] = ['TEO', 'CARLOS'];
-
+  @Input() players: string[] = [];
 }

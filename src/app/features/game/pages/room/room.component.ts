@@ -6,6 +6,4 @@ import { ServerService } from '../../../../services/server.service';
   templateUrl: './room.component.html',
   styleUrl: './room.component.css',
 })
-export class RoomComponent {
-  
-}
+export class RoomComponent {}

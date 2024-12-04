@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { BingoCardComponent } from './components/bingo-card/bingo-card.component';
 import { PlayerListComponent } from './components/player-list/player-list.component';
+import { DrawingBingoBallsComponent } from './components/drawing-bingo-balls/drawing-bingo-balls.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PlayerListComponent } from './components/player-list/player-list.compon
     MenuComponent,
     BingoCardComponent,
     PlayerListComponent,
+    DrawingBingoBallsComponent,
   ],
   imports: [CommonModule, GameRoutingModule],
 })
