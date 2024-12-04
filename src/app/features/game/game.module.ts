@@ -9,6 +9,7 @@ import { NoRoomAvailableComponent } from './pages/no-room-available/no-room-avai
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { BingoCardComponent } from './components/bingo-card/bingo-card.component';
+import { PlayerListComponent } from './components/player-list/player-list.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { BingoCardComponent } from './components/bingo-card/bingo-card.component
     HeaderComponent,
     MenuComponent,
     BingoCardComponent,
+    PlayerListComponent,
   ],
   imports: [CommonModule, GameRoutingModule],
 })
