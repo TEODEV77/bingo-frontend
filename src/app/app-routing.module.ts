@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { isAuthenticatedGuard } from './features/auth/guards/is-authenticated.guard';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full',
+  },
   {
     path: 'auth',
     loadChildren: () =>
@@ -9,9 +15,14 @@ const routes: Routes = [
   },
   {
     path: 'game',
+    canActivate:[isAuthenticatedGuard],
     loadChildren: () =>
       import('./features/game/game.module').then((m) => m.GameModule),
   },
+  {
+    path: '**',
+    redirectTo: 'auth',
+  }
 ];
 
 @NgModule({

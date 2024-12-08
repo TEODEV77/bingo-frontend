@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LobbyWsService } from '../../services/lobby-ws.service';
+import { LobbyWebSocketService } from '../../services/lobby-ws.service';
 
 @Component({
   selector: 'app-lobby',
@@ -8,25 +8,36 @@ import { LobbyWsService } from '../../services/lobby-ws.service';
   styleUrl: './lobby.component.css',
 })
 export class LobbyComponent implements OnInit {
-  public countdown: number = 0;
-  //http://localhost:4200/game/menu
-  constructor(private router: Router, private lobbyWsService: LobbyWsService) {}
+  public countdownTime: number = 0;
 
+  constructor(private router: Router, private lobbyWebSocketService: LobbyWebSocketService) {}
+
+  /**
+   * Initializes the component and sets up WebSocket connections.
+   */
   ngOnInit(): void {
-    this.lobbyWsService.connect();
-    this.lobbyWsService.onTimeUpdate((time: number) => {
-      this.startCountdown(time);
+    this.lobbyWebSocketService.connect();
+    this.lobbyWebSocketService.onTimeUpdate().subscribe((time: number) => {
+      this.updateCountdown(time);
     });
-    this.onCountdownEnd();
+    this.handleLobbyClosure();
   }
 
-  startCountdown(time: number) {
-    this.countdown = time;
+  /**
+   * Updates the countdown timer with the given time.
+   * @param time - The time to set the countdown to.
+   */
+  updateCountdown(time: number) {
+    this.countdownTime = time;
   }
 
-  onCountdownEnd() {
-    this.lobbyWsService.onLobbyClosed((flag: boolean) => {
-      if (flag) {
+  /**
+   * Handles the event when the lobby is closed.
+   * Navigates to the appropriate route based on the flag received.
+   */
+  handleLobbyClosure() {
+    this.lobbyWebSocketService.onLobbyClosed().subscribe((isClosed: boolean) => {
+      if (isClosed) {
         this.router.navigate(['/game/noroom']);
       } else {
         this.router.navigate(['/game/room']);

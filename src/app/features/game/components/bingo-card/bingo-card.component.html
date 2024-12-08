@@ -11,7 +11,7 @@
         <div
           class="w-16 h-16 flex items-center justify-center rounded-lg font-bold cursor-pointer transition duration-300 transform hover:scale-105"
           [ngClass]="isNumberSelected(num) ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-900 hover:bg-gray-300'"
-          (click)="toggleNumber(num)"
+          (click)="toggleNumberSelection(num)"
         >
           {{ num !== 0 ? num : 'FREE' }}
         </div>
@@ -23,7 +23,7 @@
   <div class="flex justify-center">
     <button
       class="bg-blue-700 text-white px-6 py-3 rounded-full font-bold shadow-lg transition duration-300 transform hover:scale-105 hover:bg-blue-700"
-      (click)="bingo()"
+      (click)="checkBingo()"
     >
       ¡BINGO!
     </button>

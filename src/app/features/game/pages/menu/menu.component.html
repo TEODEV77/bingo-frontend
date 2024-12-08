@@ -3,16 +3,26 @@
     <!-- Header -->
     <header
       [title]="'Main Menu'"
-      [subtitle]="'Welcome! Click the button below to generate your Bingo card.'"
+      [subtitle]="'Welcome ' + currentUser()?.nickname + ', Click the button below to generate your Bingo card.'"
     ></header>
 
     <!-- Button -->
     <div class="mt-6">
       <button
         class="bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-500 transition duration-200"
-        (click)="goToLobby()"
+        (click)="navigateToLobby()"
       >
         Generate your Bingo card
+      </button>
+    </div>
+
+    <!-- Logout Button -->
+    <div class="mt-4">
+      <button
+        class="bg-blue-900 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-500 transition duration-200"
+        (click)="logoutUser()"
+      >
+        Logout
       </button>
     </div>
   </div>
