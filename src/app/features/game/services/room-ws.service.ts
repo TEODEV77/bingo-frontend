@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, Subject, throwError } from 'rxjs';
 import { io, ManagerOptions, Socket, SocketOptions } from 'socket.io-client';
@@ -94,7 +94,9 @@ export class RoomWebSocketService {
    * @returns {Observable<number[][]>} Observable emitting the generated bingo card.
    */
   public generateBingoCard(): Observable<number[][]> {
-    return this.http.get<number[][]>(`${this.apiUrl}/bingo/generate`).pipe(
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<number[][]>(`${this.apiUrl}/bingo/generate`, { headers }).pipe(
       map((card) => card),
       catchError((error) => {
         console.error('Error generating bingo card:', error);
@@ -109,8 +111,10 @@ export class RoomWebSocketService {
    * @returns {Observable<boolean>} Observable emitting the result of the winner check.
    */
   public checkWinner(marked: boolean[][]): Observable<boolean> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const body = { marked };
-    return this.http.post<boolean>(`${this.apiUrl}/bingo/check-winner`, body).pipe(
+    return this.http.post<boolean>(`${this.apiUrl}/bingo/check-winner`, body, { headers }).pipe(
       catchError((error) => {
         return throwError(() => new Error('Error checking winner'));
       })

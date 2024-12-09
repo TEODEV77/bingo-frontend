@@ -17,8 +17,8 @@ export class RegisterComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.registrationForm = this.formBuilder.group({
-      nickname: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(4)]],
+      nickname: ['Sofka', Validators.required],
+      password: ['1234', [Validators.required, Validators.minLength(4)]],
     });
   }
 
