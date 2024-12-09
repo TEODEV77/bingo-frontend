@@ -1,0 +1,66 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white shadow-2xl rounded-2xl p-8 max-w-md w-full">
+    <!-- Header -->
+    <div class="flex justify-center mb-8">
+      <h1 class="text-3xl font-extrabold text-blue-700">Log In</h1>
+    </div>
+
+    <!-- Reactive Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="handleLogin()" class="space-y-6">
+      <!-- Nickname -->
+      <div>
+        <label for="nickname" class="block text-sm font-medium text-gray-700">Nickname</label>
+        <input
+          type="text"
+          id="nickname"
+          formControlName="nickname"
+          class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+          placeholder="Enter your nickname"
+        />
+        <!-- Error message -->
+        <div *ngIf="loginForm.get('nickname')?.touched && loginForm.get('nickname')?.invalid">
+          <p class="text-sm text-red-500 mt-1">Nickname is required.</p>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+          placeholder="Enter your password"
+        />
+        <!-- Error login -->
+        <div *ngIf="isLoginError">
+          <p class="text-sm text-red-500 mt-1">Please check your credentials.</p>
+        </div>
+        <!-- Error message -->
+        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+          <p class="text-sm text-red-500 mt-1">Password must be at least 3 characters long.</p>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="mt-6">
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-bold shadow-md hover:bg-blue-700 transition-transform transform hover:scale-105 disabled:bg-gray-400"
+        >
+          Log In
+        </button>
+      </div>
+    </form>
+
+    <!-- Sign Up Link -->
+    <div class="mt-4 text-center">
+      <p class="text-sm text-gray-600">
+        Don't have an account?
+        <a routerLink="/auth/register" class="text-blue-600 hover:underline font-medium">Sign up</a>
+      </p>
+    </div>
+  </div>
+</div>

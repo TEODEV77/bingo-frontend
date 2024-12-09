@@ -1,0 +1,37 @@
+<div class="min-h-screen flex flex-col items-center bg-gray-100 py-6">
+  <!-- Disqualified Announcement -->
+  <div *ngIf="disqualifiedPlayer" class="bg-red-100 text-red-700 p-4 rounded-lg mb-4">
+      {{ disqualifiedPlayer }}
+  </div>
+
+  <!-- Winner Announcement -->
+  <div *ngIf="winnerPlayer" class="bg-green-100 text-green-700 p-4 rounded-lg mb-4">
+      The Winner is: {{ winnerPlayer }}
+  </div>
+
+  <!-- Header -->
+  <div class="bg-white shadow-2xl rounded-2xl p-6 w-full max-w-4xl text-center space-y-4">
+      <h1 class="text-3xl font-extrabold text-blue-700">Bingo Room</h1>
+      <p class="text-gray-600">Get ready! The game is in progress.</p>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex flex-wrap justify-center gap-6 mt-8 max-w-4xl w-full">
+      <!-- Player List -->
+      <div class="bg-white shadow-lg rounded-2xl p-6 w-full max-w-lg mx-auto">
+          <players [players]="connectedClients"></players>
+      </div>
+
+      <!-- Bingo Balls -->
+      <div class="bg-white shadow-lg rounded-2xl p-6 w-full max-w-sm">
+          <bingo-balls [bingoBalls]="bingoBallsHistory"></bingo-balls>
+      </div>
+
+      <!-- Bingo Card -->
+      <bingo-card
+          [cardNumbers]="bingoCard"
+          [selectedNumbers]="markedNumbers"
+          [currentBingoBalls]="currentBingoBalls()"
+      ></bingo-card>
+  </div>
+</div>

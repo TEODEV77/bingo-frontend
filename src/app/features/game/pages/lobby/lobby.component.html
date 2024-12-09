@@ -1,0 +1,22 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white shadow-2xl rounded-2xl p-8 max-w-md w-full text-center space-y-6">
+
+    <!-- Header -->
+    <header
+      [title]="'Waiting on more players'"
+      [subtitle]="'The timer starts when we have 2+ players'"
+    ></header>
+
+    <!-- Countdown Timer -->
+    <div class="flex justify-center items-center mt-6">
+      <div class="w-24 h-24 flex items-center justify-center rounded-full border-4 border-blue-600 shadow-md text-blue-700 text-4xl font-extrabold">
+        {{ countdownTime }}
+      </div>
+    </div>
+
+    <!-- Subtext -->
+    <p class="text-gray-500 text-sm">
+      The room is ready in {{ countdownTime }} seconds
+    </p>
+  </div>
+</div>
